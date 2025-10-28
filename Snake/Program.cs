@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets; 
 using System.Text;
 using System.Threading.Tasks;
 using Common;
@@ -23,7 +24,7 @@ namespace Snake
         {
             foreach (ViewModelUserSettings User in remoteIPAddress)
             {
-                UpdClient sender = new UpdClient();
+                UdpClient sender = new UdpClient();
                 IPEndPoint endPoint = new IPEndPoint(
                     IPAddress.Parse(User.IPAddress),
                     int.Parse(User.Port));
@@ -31,11 +32,12 @@ namespace Snake
                 {
                     byte[] bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(viewModelGames.Find(x => x.IdSnake == User.IdSnake)));
 
-                    sender.Send(bytes, bytes.Length,endPoint);
+                    sender.Send(bytes, bytes.Length, endPoint);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"Отправил данные пользователю: {User.IPAddress}:{User.Port}");
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Возникло исключение :" + ex.ToString() + "\n" + ex.Message);
                 }
@@ -43,6 +45,32 @@ namespace Snake
                 {
                     sender.Close();
                 }
+            }
+        }
+
+            public static void Receiver()
+        {
+            UdpClient receivingUpdClient = new UdpClient(localPort);
+            IPEndPoint RemoteIpEndPoint = null;
+            try
+            {
+                Console.WriteLine("Команды сервера: ");
+                while (true)
+                {
+                    byte[] receiveBytes = receivingUpdClient.Receive(ref RemoteIpEndPoint);
+
+                    string returnData = Encoding.UTF8.GetString(receiveBytes);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Получил команду" + returnData.ToString());
+
+                    if (returnData.ToString().Contains("/start"))
+                    {
+                        string[] dataMessage = returnData.ToString().Split('|');
+                        ViewModelUserSettings viewModelUserSettings = JsonConvert.DeserializeObject<ViewModelUserSettings>(dataMessage[1]);
+                    }
+                }
+            }
+
         }
     }
 
