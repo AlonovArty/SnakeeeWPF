@@ -12,6 +12,7 @@ namespace ConsoleApp1
         public static List<ViewModelUserSettings> remoteIPAddress = new List<ViewModelUserSettings>();
         public static List<ViewModelGames> viewModelGames = new List<ViewModelGames>();
         private static int localPort = 5001;
-        public static int MaxSpreed = 15;
+        public static int MaxSpeed = 15;
+
     }
 }
