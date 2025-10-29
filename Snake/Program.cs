@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets; 
@@ -20,6 +21,21 @@ namespace Snake
         public static int MaxSpeed = 15;
         static void Main(string[] args)
         {
+            try
+            {
+                Thread tRec = new Thread(new ThreadStart(Receiver));
+                tRec.Start();
+
+                Thread tTime = new Thread(Timer);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Возникло исключение: " + ex.ToString() + "\n" + ex.Message);
+
+            }
+
+
         }
 
         public static void Send()
@@ -247,6 +263,33 @@ namespace Snake
                 Send();
                 
             }
+        }
+
+        public static void SaveLeaders()
+        {
+
+            string json = JsonConvert.SerializeObject(Leaders);
+            StreamWriter SW = new StreamWriter("./leaders.txt");
+            SW.WriteLine(json);
+            SW.Close();
+        }
+
+        public static void LadLeaders()
+        {
+            if (File.Exists("./leaders.txt"))
+            {
+                StreamReader SR = new StreamReader("./leaders.txt");
+                string json = SR.ReadLine();
+                SR.Close();
+
+                if(!string.IsNullOrEmpty(json))
+                
+                    Leaders = JsonConvert.DeserializeObject<List<Leaders>>(json);
+                else
+                    Leaders= new List<Leaders>();
+                
+            }
+            else Leaders = new List<Leaders>();
         }
 
     }
