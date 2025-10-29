@@ -274,7 +274,7 @@ namespace Snake
             SW.Close();
         }
 
-        public static void LadLeaders()
+        public static void LoadLeaders()
         {
             if (File.Exists("./leaders.txt"))
             {
