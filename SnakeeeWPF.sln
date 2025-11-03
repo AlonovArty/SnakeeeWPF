@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeeeWPF", "SnakeeeWPF\SnakeeeWPF.csproj", "{7059669A-61F5-4F50-BBCC-8D137F8FA32A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AC7A0C3B-81AE-4230-847B-2E5858756722}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{88285124-6C85-483E-A824-4BF95A1E1680}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7059669A-61F5-4F50-BBCC-8D137F8FA32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7059669A-61F5-4F50-BBCC-8D137F8FA32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7059669A-61F5-4F50-BBCC-8D137F8FA32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7059669A-61F5-4F50-BBCC-8D137F8FA32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7A0C3B-81AE-4230-847B-2E5858756722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7A0C3B-81AE-4230-847B-2E5858756722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7A0C3B-81AE-4230-847B-2E5858756722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7A0C3B-81AE-4230-847B-2E5858756722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88285124-6C85-483E-A824-4BF95A1E1680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88285124-6C85-483E-A824-4BF95A1E1680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88285124-6C85-483E-A824-4BF95A1E1680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88285124-6C85-483E-A824-4BF95A1E1680}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
